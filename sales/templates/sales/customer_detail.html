@@ -1,0 +1,26 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<h3>Customer: {{object.name}}</h3>
+<h3>code: {{object.code}}</h3>
+<h3>Sales Channel: {{object.sales_channel}}</h3>
+
+<table class="table" style="text-align: center;">
+    <thead>
+        <th>Plan Type</th>
+        <th>Period</th>
+    </thead>
+    <tbody>
+        {% for plan in object.salesplan_set.all %}
+        <tr>
+            <td>{{plan.plan_type}}</td>
+            <td>{{plan.month}}</td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+   
+</table>
+
+
+{% endblock content %}

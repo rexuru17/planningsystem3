@@ -1,0 +1,28 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<h3>Plan: {{object.name}}</h3>
+<h3>Year: {{object.year}}</h3>
+
+<table class="table" style="text-align: center;">
+    <thead>
+        <th>Period</th>
+        <th>Customer</th>
+        <th>Edit Items</th>
+        <th>Delete Plan</th>
+    </thead>
+    <tbody>
+        {% for plan in object.salesplan_set.all %}
+        <tr>
+            <td>{{plan.plan_type.year}} - {{plan.month}}</td>
+            <td>{{plan.customer}}</td>
+            <td><a class="btn btn-primary" href="{% url 'sales:sales-plan-items-update' pk=plan.id %}">Edit</a></td>
+            <td><a class="btn btn-danger" href="{% url 'sales:delete-sales-plan' pk=plan.id %}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+   
+</table>
+
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<table class="table" style="text-align: center;">
+    {% csrf_token %}
+    <thead>
+
+            <td>PLAN TYPE</td>
+            <td>PERIOD</td>
+            <td>CHANNEL</td>
+            <td>PRODUCT CODE</td>
+            <td>PRODUCT NAME</td>
+            <td>QUANTITY</td>
+            <td>EDIT</td>
+
+    </thead>
+     <tbody>
+        {% for plan in object_list %}
+        <tr>
+            <td>{{plan.sales_plan.plan_type}}</td>
+            <td>{{plan.sales_plan.month}}</td>
+            <td>{{plan.sales_plan.customer.sales_channel}}</td>
+            <td>{{plan.product.code}}</td>
+            <td>{{plan.product.name}}</td>
+            <td>{{plan.quantity}}</td>
+            <td><a href="{% url 'sales:sales-plan-items-update' pk=plan.sales_plan.id %}">Edit</a></td>
+        </tr>
+       
+        {% endfor %}
+     </tbody>  
+</table>
+
+  {% endblock content %}
